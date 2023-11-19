@@ -11,7 +11,7 @@ export const MostPopular = () => {
         try {
             const response = await fetch(API_POPULAR);
             if (!response.ok) {
-                throw new Error("Failed to fetch movies")
+                throw new Error("Failed to fetch books")
             }
             const result = await response.json();
             setPopularBooks(result)

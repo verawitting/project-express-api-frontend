@@ -6,12 +6,17 @@ export const AllBooks = () => {
     const [allBooks, setAllBooks] = useState([]);
 
     const API_ALLBOOKS = `https://project-express-api-vera.onrender.com/books`
+   
 
-    const fetchBooks = async () => {
+     //Adding option to use the queries constructed in the backend
+     //Sending queriParams as argument to the fetch
+    const fetchBooks = async (queryParams) => {
         try {
-            const response = await fetch(API_ALLBOOKS);
+            //adding query sting to the url
+            const queryString = new URLSearchParams(queryParams).toString();
+            const response = await fetch(`${API_ALLBOOKS}?${queryString}`);
             if (!response.ok) {
-                throw new Error("Failed to fetch movies")
+                throw new Error("Failed to fetch books")
             }
             const result = await response.json();
             setAllBooks(result)
@@ -21,7 +26,15 @@ export const AllBooks = () => {
     }
 
     useEffect(() => {
-        fetchBooks();
+        // Extract query parameters from the current URL by creating
+        // an object containing all the query parameters and their values from the current URL
+        const urlSearchParams = new URLSearchParams(window.location.search);
+        // taking the iterator returned by urlSearchParams.entries() and creating an
+        // object where each key corresponds to a query parameter, and the value is its associated value
+        const queryParams = Object.fromEntries(urlSearchParams.entries());
+
+        // Fetch books with the extracted query parameters
+        fetchBooks(queryParams);
     },[])
 
     console.log(allBooks);

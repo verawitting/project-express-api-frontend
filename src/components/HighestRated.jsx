@@ -11,7 +11,7 @@ export const HighestRated = () => {
         try {
             const response = await fetch(API_HIGHESTRATED);
             if (!response.ok) {
-                throw new Error("Failed to fetch movies")
+                throw new Error("Failed to fetch books")
             }
             const result = await response.json();
             setHighestRatedBooks(result)
