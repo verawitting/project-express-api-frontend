@@ -4,6 +4,7 @@ import { MostPopular } from "./MostPopular"
 import { HighestRated } from "./HighestRated"
 import { ShortStories } from "./ShortStories"
 import { Novels } from "./Novels"
+import { AllBooks } from "./AllBooks"
 
 export const routes = (
     <>
@@ -21,6 +22,9 @@ export const routes = (
         </Route>
         <Route path="/short-stories"
         element={<ShortStories />}>
+        </Route>
+        <Route path="/books"
+        element={<AllBooks />}>
         </Route>
     </>
 )

@@ -7,7 +7,7 @@ export const Book = ({ books }) => {
   <>
     {
         books.map((book) => (
-            <div className="single-book">
+            <div className="single-book" key={book.bookID}>
             <h3>{book.title}</h3>
             <h4>{book.authors}</h4>
             <div className="book-details">

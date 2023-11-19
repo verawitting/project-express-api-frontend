@@ -3,18 +3,18 @@ import { BookList } from "./BookList";
 
 export const HighestRated = () => {
 
-    const [popularBooks, setPopularBooks] = useState([]);
+    const [highestRatedBooks, setHighestRatedBooks] = useState([]);
 
-    const API_POPULAR = `https://project-express-api-vera.onrender.com/books/most-popular`
+    const API_HIGHESTRATED = `https://project-express-api-vera.onrender.com/books/highest-rated`
 
     const fetchBooks = async () => {
         try {
-            const response = await fetch(API_POPULAR);
+            const response = await fetch(API_HIGHESTRATED);
             if (!response.ok) {
                 throw new Error("Failed to fetch movies")
             }
             const result = await response.json();
-            setPopularBooks(result)
+            setHighestRatedBooks(result)
         } catch (error) {
             console.log("Error with fetch", error)
         }
@@ -24,11 +24,11 @@ export const HighestRated = () => {
         fetchBooks();
     },[])
 
-    console.log(popularBooks);
+    console.log(highestRatedBooks);
 
   return (
     <>
-        <BookList books={popularBooks} />
+        <BookList heading="HIGHEST RATING" books={highestRatedBooks} />
     </>
   )
 }
